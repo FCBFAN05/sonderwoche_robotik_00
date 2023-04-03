@@ -1,12 +1,16 @@
 input.onButtonPressed(Button.A, function () {
-    for (let y = 0; y <= 4; y++) {
-        for (let x = 0; x <= 4; x++) {
-            led.toggle(0 + x, 0 + y)
-            basic.pause(500)
-            led.unplot(0 + x, 0 + y)
-        }
-    }
+    maqueen.motorStop(maqueen.Motors.All)
 })
+basic.showIcon(IconNames.Happy)
 basic.forever(function () {
-	
+    for (let index = 0; index < 4; index++) {
+        maqueen.motorStop(maqueen.Motors.All)
+        maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, 100)
+        basic.pause(5000)
+        maqueen.motorStop(maqueen.Motors.All)
+        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 255)
+        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 255)
+        basic.pause(300)
+        maqueen.motorStop(maqueen.Motors.All)
+    }
 })

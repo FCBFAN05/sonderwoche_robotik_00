@@ -1,11 +1,11 @@
-def on_button_pressed_a():
-    for index in range(5):
-        led.toggle(0, 0)
-        basic.pause(500)
-        led.unplot(4, 4)
-        basic.pause(500)
-input.on_button_pressed(Button.A, on_button_pressed_a)
-
+c = 1
 def on_forever():
-    pass
+    global c
+    maqueen.write_led(maqueen.LED.LED_RIGHT, maqueen.LEDswitch.TURN_ON)
+    basic.pause(c * 1000)
+    maqueen.write_led(maqueen.LED.LED_RIGHT, maqueen.LEDswitch.TURN_OFF)
+    maqueen.write_led(maqueen.LED.LED_LEFT, maqueen.LEDswitch.TURN_ON)
+    basic.pause(c * 1000)
+    maqueen.write_led(maqueen.LED.LED_LEFT, maqueen.LEDswitch.TURN_OFF)
+    c += 1
 basic.forever(on_forever)
